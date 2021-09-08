@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>websocket client</title>
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/vue-simple-notify/dist/vue-simple-notify.min.css">
+    <link href="/styles.css" rel="stylesheet">
+    <link href="https://unpkg.com/vue-simple-notify/dist/vue-simple-notify.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-simple-notify/dist/vue-simple-notify.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
@@ -14,8 +14,7 @@
 <body>
     <main id="v-app">
         <section class="alert">
-            <alert-component :item="alerts"></alert-component>
-
+            <alerts-component :items="alerts"></alerts-component>
         </section>
 
         <section class="chat">
@@ -33,7 +32,7 @@
         </section>
     </main>
     <script>
-        Vue.component('alerts-component',VueSimpleNotify.VueSimpleNotify);
+        Vue.component('alerts-component', VueSimpleNotify.VueSimpleNotify);
         var app =  new Vue({
             el:'#v-app',
             data:{
@@ -42,7 +41,7 @@
                 text:'',
                 messages:[],
                 socket:{chat:null ,alert:null},
-                alert: [],
+                alerts: [],
             },
             methods:{
                 sendChatMessage(){
@@ -56,7 +55,7 @@
                 },
                 receviedAlertMessage(msg){
                     console.log(`received --- ${msg.message}`)
-                    this.alert.push(msg)
+                    this.alerts.push(msg)
                 }
             },
             created(){
@@ -66,8 +65,8 @@
                     this.receviedChatMessage(msg)
                 })  
 
-                this.socket.alert = io('http://localhost:3000/alert')
-                this.socket.alert.on('alertTOclient',(msg)=>{     
+                this.socket.alerts = io('http://localhost:3000/alert')
+                this.socket.alerts.on('alertTOclient',(msg)=>{     
                     this.receviedAlertMessage(msg)
                 })  
             }

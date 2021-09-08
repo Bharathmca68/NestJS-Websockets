@@ -1,0 +1,16 @@
+getting started with websockets 
+
+blog -- https://medium.com/@phatdev/build-a-real-time-chat-application-with-websocket-socket-io-redis-and-docker-in-nestjs-499c2513c18
+
+
+>> create a new nest project 
+    >> nest new Project_name--skip-git 
+
+>> delete unnecessary file like controllers and services 
+>> create/generate a gateway application
+    >> nest g gateway app           // it ll automatically generate a files and update the remaining files with
+    >> install the nessary packages of websockets
+        >> npm i --save @nestjs/websockets @nestjs/platform-socket.io
+
+
+

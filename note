@@ -8,7 +8,7 @@ blog -- https://medium.com/@phatdev/build-a-real-time-chat-application-with-webs
 
 >> delete unnecessary file like controllers and services 
 >> create/generate a gateway application
-    >> nest g gateway app           // it ll automatically generate a files and update the remaining files with
+    >> nest g gateway <folder_name> <app_name>           // it ll automatically generate a files and update the remaining files with
     >> install the nessary packages of websockets
         >> npm i --save @nestjs/websockets @nestjs/platform-socket.io
 

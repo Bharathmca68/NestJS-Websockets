@@ -10,7 +10,7 @@ import {
 import { Logger } from '@nestjs/common';
 import { Socket, Server } from 'socket.io';
 
-@WebSocketGateway()
+@WebSocketGateway({ path: '/websockets', serveClient: true })     //part-3 configuration options 
 export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
 
   @WebSocketServer() wss: Server;      // for emiting everyone 
@@ -26,7 +26,12 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
   }
 
   handleConnection(client: Socket, ...args: any[]) {
-    this.logger.log(`Client connected...! :: ${client.id}`)    // when client is connected the client unique ID will get generated 
+    // let i = 0;
+    // if (client.id) {
+    //   i = i + 1
+    this.logger.log(`Client connected...!  :: ${client.id}`)    // when client is connected the client unique ID will get generated 
+    // }
+
   }
 
   // @SubscribeMessage('msgTOserver')                                     -->

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://localhost:3000/websockets/socket.io.js"></script>
 </head>
 <body>
     <div id="v-app">
@@ -33,7 +33,7 @@
             methods:{
                 sendMessage(){
                     console.log(`sent --- ${this.text}`)
-                    this.socket.emit('msgTOserver',this.text)   // make sure that the name msgTOserver name should match in the gateway
+                    this.socket.emit('msgTOserver',this.text)   // make sure that the name msgTOclient name should match in the gateway
                     this.text = "";
                 },
                 receviedMessage(msg){
@@ -42,7 +42,7 @@
                 }
             },
             created(){
-                this.socket = io('http://localhost:3000')
+                this.socket = io('http://localhost:3000',{path:'/websockets'})
                 this.socket.on('msgTOclient',(msg)=>{       // make sure that the name msgTOclient name should match in the gateway 
                     this.receviedMessage(msg)
                 })
